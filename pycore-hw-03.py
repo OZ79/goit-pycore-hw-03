@@ -7,7 +7,7 @@ def get_days_from_today(date: int) -> int:
     try:
         date_datetime = datetime.strptime(date, "%Y-%m-%d")
         today_datetime = datetime.today()
-        delta = today_datetime - date_datetime;
+        delta = today_datetime - date_datetime
         return delta.days
     except ValueError as ex:
         print(ex)
@@ -24,16 +24,18 @@ def get_numbers_ticket(min: int, max: int, quantity: int) -> list:
         return []
     
     numbers = list(range(min, max + 1))
-    numbers_random = random.sample(numbers, quantity);
+    numbers_random = random.sample(numbers, quantity)
     numbers_random.sort()
 
     return numbers_random
 
 # Завдання 3
 def normalize_phone(phone_number: str) -> str:
-    normalized_phone_number = re.sub(r'\D','',phone_number)
+    normalized_phone_number = re.sub(r'\D','', phone_number)
     if normalized_phone_number.startswith('380'):
         normalized_phone_number = '+'+ normalized_phone_number
+    elif normalized_phone_number.startswith('0'):
+       normalized_phone_number = '+38'+ normalized_phone_number
     else:
         normalized_phone_number = '+380'+ normalized_phone_number
 
@@ -52,7 +54,7 @@ raw_numbers = [
 ]
 
 sanitized_numbers = [normalize_phone(num) for num in raw_numbers]
-#print("Нормалізовані номери телефонів для SMS-розсилки:", sanitized_numbers)
+print("Нормалізовані номери телефонів для SMS-розсилки:", *sanitized_numbers, sep = '\n')
 
 # Завдання 4
 def get_upcoming_birthdays(users: dict) -> dict:
@@ -79,4 +81,4 @@ users = [
 ]
 
 upcoming_birthdays = get_upcoming_birthdays(users)
-print("Список привітань на цьому тижні:", upcoming_birthdays)
+#print("Список привітань на цьому тижні:", upcoming_birthdays)
